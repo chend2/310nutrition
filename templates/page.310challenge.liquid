@@ -1,0 +1,95 @@
+<!-- /templates/page.310challenge.liquid -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="challenge-page">
+	<div class="grid">
+		{% comment %}
+			Regular page content goes here.
+		{% endcomment %}
+		<div class="rte">
+			{{page.content}}
+		</div>
+		
+	</div>
+
+	<div class="grid facebook">
+		<div class="grid__item large--three-quarters push--large--one-eighth six-eighths push--one-eighth">
+			<div class="grid">
+				<div class="grid__item large--two-thirds">
+					<div>
+						<h3>Write Your Comment</h3>
+						<div class="fb-comments" data-href="{{shop.url}}{{page.url}}" data-numposts="5"></div>
+					</div>
+				</div>
+				<div class="grid__item large--one-third text-center">
+					<div class="fb-page" data-href="https://www.facebook.com/310Nutrition" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/310Nutrition" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/310Nutrition">310 Nutrition</a></blockquote></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		var youtube = document.querySelectorAll( ".youtube" );
+		for (var i = 0; i < youtube.length; i++) {
+		    var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
+		    var image = new Image();
+	        image.src = source;
+	        image.addEventListener( "load", function() {
+	            youtube[ i ].appendChild( image );
+	        }( i ) );
+	        youtube[i].addEventListener( "click", function() {
+		        var iframe = document.createElement( "iframe" );
+		 
+		            iframe.setAttribute( "frameborder", "0" );
+		            iframe.setAttribute( "allowfullscreen", "" );
+		            iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
+
+		            this.innerHTML = "";
+		            this.appendChild( iframe );
+		    } );
+		}
+
+		$('.challenge-tab').hide();
+		$('.abs').show();
+
+		$('.challenges li').click(function(){
+			$('.challenge-nav-active').removeClass('challenge-nav-active');
+			var toShow = $(this).attr('class');
+			$(this).addClass('challenge-nav-active');
+			toShow = toShow.replace('-nav','');
+			$('.challenge-tab').hide();
+			console.log(toShow);
+			$('.'+toShow).show();
+		});
+
+		$('.challenge-image').click(function(){
+			if($(this).hasClass('clicked') != true){
+				window.scroll(0,0);
+           
+			}
+			$(this).toggleClass('clicked');
+           $(this).children('div').toggleClass('challenge-wrap');
+          
+          
+          
+
+		})
+		$('.challenge-video').click(function(){
+			$('img', this).hide();
+			if($(this).hasClass('clicked') != true){
+				window.scroll(0,0);
+			}
+			$(this).toggleClass('clicked');
+           $(this).children('div').toggleClass('challenge-wrap');
+			$('.youtube', this).show();
+		})
+	})
+</script>

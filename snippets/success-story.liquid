@@ -1,0 +1,45 @@
+<div class="success-story-popout {{article.id}}">
+	<div class="grid story-popout-wrapper">
+		<div class="grid__item text-right"><a href="#" class="close">X</a></div>
+		<div class="grid__item large--one-half medium--one-half">
+			<img src="{{ article | img_url: 'large' }}" alt="">
+		</div>
+		<div class="grid__item large--one-half medium--one-half">
+			<h3>{{article.title}}</h3>
+			<p class="weight-lost">
+				LOST<br>
+				<span class="popout-pounds">
+				{% for tag in article.tags %}
+				    {{tag}}
+				{% endfor %}
+				Lbs
+				</span>*
+			</p>
+			<p class="disclaimer">* Results may vary</p>
+			<div class="share-buttons">
+				{% include 'facebook-share' %}
+				<iframe src="https://www.facebook.com/plugins/share_button.php?href={{shop.url}}{{article.url}}&layout=button_count&size=small&mobile_iframe=true&width=69&height=20&appId" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+
+				<a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+				<!-- Place this tag in your head or just before your close body tag. -->
+				<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+				<!-- Place this tag where you want the +1 button to render. -->
+				<div class="g-plusone"></div>
+
+				<a data-pin-do="buttonBookmark" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+				<script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+			</div>
+		</div>
+		<div class="grid__item">
+			<p class="content">
+				{{article.content}}
+			</p>
+		</div>
+		<div class="grid__item"><hr></div>
+		<div class="grid__item">
+			<p class="disclaimer">* Results may vary. Exercise and proper diet are necessary to achieve and maintain weight loss and muscle definition. For questions or concerns regarding any exercise program or using any supplement or meal replacement product always consult your physician. None of the before/ after testimonials featured on this website were paid or remunerated in any fashion. Additionally participants may have used more than one 310 Nutrition product to achieve their results. The information on our Web sites is not intended to diagnose any medical condition or to replace the advice of a healthcare professional. If you experience any pain or difficulty with exercises or diet, stop and consult your healthcare provider.</p>
+		</div>
+	</div>
+</div>

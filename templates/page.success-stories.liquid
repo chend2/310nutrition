@@ -1,0 +1,49 @@
+<!-- /templates/page.liquid -->
+<div class="grid">
+	<div class="grid__item large--two-thirds push--large--one-sixth">
+	{% comment %}
+		Regular page content goes here.
+	{% endcomment %}
+	
+		<div class="success-stories-page">
+			<div class="grid success-stories">
+				<div class="grid__item success-stories-title">
+					<h2>SUCCESS STORIES: REAL PEOPLE REAL RESULTS</h2>
+					<span class="disclaimer">*Results may vary</span>
+				</div>
+				<div class="grid__item">
+					<p>We have helped countless people reach their fitness goals–but every journey starts with a first step. See how these people started their journeys and reached their goals–and how you can too!</p>
+				</div>
+				{% for article in blogs["success-stories"].articles %}
+					<div class="grid__item large--one-third one-whole success-story">
+						<div class="weight-loss">LOST {% for tag in article.tags %}{{tag}}{% endfor %} <span class="pounds">Lbs*</span></div>
+						<img src="{{ article | img_url: 'medium' }}" alt="">
+						<a href="#" onclick="showStory('{{article.id}}')">{{article.title}}'s Story ></a>
+						{% include 'success-story' %}	
+					</div>
+				{% endfor %}
+				 
+				<div class="grid__item large--one-third one-whole success-story you-are-next">
+					<h2>You Are <span class="orange">Next!</span></h2>
+					<p>Send us your success stories at <a href="mailto:yourstory@310nutrition.com">yourstory@310nutrition.com</a></p>
+				</div>
+			</div>
+		</div>
+		<script>
+			function showStory(articleId){
+				var article = '.'+articleId;
+				$(article).addClass('visible');
+				$('.close').click(function(){
+					$(article).removeClass('visible');
+				});
+				$(article).click(function(event){
+					if($(event.target).closest(article + ' .story-popout-wrapper').length == 0) {
+				        $(article).removeClass('visible');
+				    }
+				});
+			}
+
+
+		</script>
+	</div>
+</div>

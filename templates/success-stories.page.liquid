@@ -1,0 +1,120 @@
+<!-- /templates/page.liquid -->
+<div class="grid">
+	<div class="grid__item large--two-thirds push--large--one-sixth">
+	{% comment %}
+		Regular page content goes here.
+	{% endcomment %}
+	
+		<div class="success-stories-page">
+			<div class="grid success-stories">
+				<div class="grid__item success-stories-title">
+					<h2>SUCCESS STORIES: REAL PEOPLE REAL RESULTS</h2>
+					<span class="disclaimer">*Results may vary</span>
+				</div>
+				<div class="grid__item">
+					<p>We have helped countless people reach their fitness goals–but every journey starts with a first step. See how these people started their journeys and reached their goals–and how you can too!</p>
+				</div>
+				<div class="grid__item large--one-third one-whole success-story">
+					<div class="weight-loss">LOST 28 <span class="pounds">Lbs*</span></div>
+					<img src="//cdn.shopify.com/s/files/1/1381/2647/t/2/assets/angela-yuriko-smith-beforeafter.png?10883796128944860541" alt="">
+					{% for article in blogs["success-stories"].articles %}
+						{% if article.title == "Angela Yuriko Smith" %}
+							<a href="#" onclick="showStory('{{article.id}}')">Angela Yuriko Smith's Story ></a>
+							{% include 'success-story' %}
+						{% endif %}
+					{% endfor %}
+				</div>
+				<div class="grid__item large--one-third one-whole success-story">
+					<div class="weight-loss">LOST 60 <span class="pounds">Lbs*</span></div>
+					<img src="//cdn.shopify.com/s/files/1/1381/2647/t/2/assets/charity-goodwin-beforeafter.png?10883796128944860541" alt="">
+					{% for article in blogs["success-stories"].articles %}
+						{% if article.title == "Charity Goodwin" %}
+							<a href="#" onclick="showStory('{{article.id}}')">Charity Goodwin's Story ></a>
+							{% include 'success-story' %}
+						{% endif %}
+					{% endfor %}
+				</div>
+				<div class="grid__item large--one-third one-whole success-story">
+					<div class="weight-loss">LOST 50 <span class="pounds">Lbs*</span></div>
+					<img src="//cdn.shopify.com/s/files/1/1381/2647/t/2/assets/karen-sotelo-beforeafter.png?10883796128944860541" alt="">
+					{% for article in blogs["success-stories"].articles %}
+						{% if article.title == "Karen Sotelo" %}
+							<a href="#" onclick="showStory('{{article.id}}')">Karen Sotelo's Story ></a>
+							{% include 'success-story' %}
+						{% endif %}
+					{% endfor %}
+				</div>
+				
+				<div class="grid__item">
+					<hr>
+				</div>
+				
+				<div class="grid__item large--one-third one-whole success-story">
+					<div class="weight-loss">LOST 95 <span class="pounds">Lbs*</span></div>
+					<img src="//cdn.shopify.com/s/files/1/1381/2647/t/2/assets/Laquisha-Ivery.png?10883796128944860541" alt="">
+					{% for article in blogs["success-stories"].articles %}
+						{% if article.title == "Laquisha Ivery" %}
+							<a href="#" onclick="showStory('{{article.id}}')">Laquisha Ivery's Story ></a>
+							{% include 'success-story' %}
+						{% endif %}
+					{% endfor %}
+				</div>
+				<div class="grid__item large--one-third one-whole success-story">
+					<div class="weight-loss">LOST 30 <span class="pounds">Lbs*</span></div>
+					<img src="//cdn.shopify.com/s/files/1/1381/2647/t/2/assets/Shawn-Saladen.png?10883796128944860541" alt="">
+					{% for article in blogs["success-stories"].articles %}
+						{% if article.title == "Shawn Saladen" %}
+							<a href="#" onclick="showStory('{{article.id}}')">Shawn Saladen's Story ></a>
+							{% include 'success-story' %}
+						{% endif %}
+					{% endfor %}
+				</div>
+				<div class="grid__item large--one-third one-whole success-story">
+					<div class="weight-loss">LOST 38 <span class="pounds">Lbs*</span></div>
+					<img src="//cdn.shopify.com/s/files/1/1381/2647/t/2/assets/Taylor-Vanelswyk.png?10883796128944860541" alt="">
+					{% for article in blogs["success-stories"].articles %}
+						{% if article.title == "Taylor Vanelswyk" %}
+							<a href="#" onclick="showStory('{{article.id}}')">Taylor Vanelswyk's Story ></a>
+							{% include 'success-story' %}
+						{% endif %}
+					{% endfor %}
+				</div>
+				
+				<div class="grid__item">
+					<hr>
+				</div>
+				
+				<div class="grid__item large--one-third one-whole success-story">
+					<div class="weight-loss">LOST 10 <span class="pounds">Lbs*</span></div>
+					<img src="//cdn.shopify.com/s/files/1/1381/2647/t/2/assets/Danielle.png?10883796128944860541" alt="">
+					{% for article in blogs["success-stories"].articles %}
+						{% if article.title == "Danielle Smith" %}
+							<a href="#" onclick="showStory('{{article.id}}')">Danielle Smith's Story ></a>
+							{% include 'success-story' %}
+						{% endif %}
+					{% endfor %}
+				</div>
+				<div class="grid__item large--one-third one-whole success-story">
+					<div class="weight-loss">LOST 14 <span class="pounds">Lbs*</span></div>
+					<img src="//cdn.shopify.com/s/files/1/1381/2647/t/2/assets/Jasmine-Gonzalez.png?10883796128944860541" alt="Jasmine Gonzalez Story">
+					{% for article in blogs["success-stories"].articles %}
+						{% if article.title == "Jasmine Gonzalez" %}
+							<a href="#" onclick="showStory('{{article.id}}')">Jasmine Gonzalez’s Story ></a>
+							{% include 'success-story' %}
+						{% endif %}
+					{% endfor %}
+					
+				</div>
+				<div class="grid__item large--one-third one-whole success-story you-are-next">
+					<h2>You Are <span class="orange">Next!</span></h2>
+					<p>Send us your success stories at <a href="mailto:yourstory@310nutrition.com">yourstory@310nutrition.com</a></p>
+				</div>
+			</div>
+		</div>
+		<script>
+			function showStory(articleId){
+				$('.'+articleId).show();
+			}
+		</script>
+	</div>
+</div>

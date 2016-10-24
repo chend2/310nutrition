@@ -1,0 +1,114 @@
+
+<!-- /templates/blog.liquid -->
+
+{% comment %}
+
+
+
+    
+    {% for article in blogs.diet-tips.articles %}
+    {% if forloop.first != true %}
+    <div class="article">
+      <h3>{{ blog.articles }}</h3>
+      <div class="article-body textile">
+         
+        {{ article.title }}
+        
+        {{ article.content }}
+        
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+    {% endcomment %}
+    
+
+{% comment %}
+
+{% assign blog_handles = "diet-tips;fitness;health-tips;meal-replacement;recipes;success-stories;weight-loss;" %}
+{% assign blog_list = blog_handles | split: ';' %}
+
+{% for blog_handle in blog_list %}
+
+  {% for article in blogs[blog_handle].articles limit: 2%}
+
+    <article>
+      <h3><a href= "{{ article.url }}">{{ article.title }}</a></h3>
+      <p><span class="date" style="display: block;">Posted: <em>{{ article.published_at | date: "%B %d %Y" }}</em> in <a href="{{ blogs[blog_handle].url }}">{{ blogs[blog_handle].title }}</a></span></p>
+      <section>{{ article.content | strip_html | truncatewords: 10 }}</section>
+    </article>
+
+    <hr class="divider" />
+
+  {% endfor %}
+
+{% endfor %}
+
+   {% endcomment %}
+    
+    <!-- /templates/blog.liquid -->
+
+<div class="wrapper blog" id="blog">
+  <div class="grid">
+    <div class="grid__item text-center">
+      <h1>BLOG</h1>
+      <p>Trending articles about health and fitness</p>
+    </div>
+
+ 
+{% assign blog_handles = "diet-tips;fitness;health-tips;meal-replacement;recipes;success-stories;weight-loss;" %}
+{% assign blog_list = blog_handles | split: ';' %}
+            
+
+    <div class="grid__item large--three-quarters push--large--one-eighth">
+      <div class="grid">
+        <div class="grid__item large--two-thirds articles">
+          <div class="grid">
+             {% for blog_handle in blog_list %}
+            {% for article in blogs[blog_handle].articles limit: 2 %}
+            <div class="grid__item article">
+              <div class="grid">
+                <div class="grid__item large--one-third medium--one-half text-center">
+                  <a class="article__featured-image" href="..{{ article.url }}">
+                    {{ article | img_url: '1024x1024' | img_tag: article.title }}
+                  </a>
+                </div>
+                <div class="grid__item large--two-thirds medium--one-half">
+                  <h3><a href="..{{ article.url }}">{{ article.title }}</a></h3>
+                  {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
+                  {% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>{% endcapture %}
+                  <p>{{ 'blogs.article.author_on_date_html' | t: author: author, date: date }}</p>
+
+                  {% comment %}
+                    Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
+                    Since this is just a listing page, you can either use the excerpt or truncate the full article.
+                  {% endcomment %}
+                  <div class="rte">
+                    {% if article.excerpt.size > 0 %}
+                      {{ article.excerpt }}
+                    {% else %}
+                      <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
+                    {% endif %}
+                    <p><a href="..{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {% endfor %}
+              {% endfor %}
+   
+          
+          </div>
+        </div>
+        <div class="grid__item large--one-third blog-sidebar">
+          {%include 'blog-sidebar' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    

@@ -1,0 +1,141 @@
+<!-- /templates/page.liquid -->
+<div class="grid">
+	<div class="grid__item large--two-thirds push--large--one-sixth">
+	{% comment %}
+		Regular page content goes here.
+	{% endcomment %}
+	
+		<div class="recipes-page">
+			<div class="grid recipes">
+				<div class="grid__item recipes-title text-center">
+					<h2>310 SHAKE RECIPES</h2>
+				</div>
+				<div class="grid__item text-center">
+					<p>Sweet, healthy, delicious and nutritious! All made with 310 Shake protein powder!</p>
+				</div>
+				<div class="clearfix text-center">
+					<div class="grid__item medium--one-third large--one-third">
+						<select class="sort">
+							<option autofocus="autofocus">Sort</option>
+							<option value="cal-low-hi">Calories Low to High</option>
+							<option value="cal-hi-low">Calories High to Low</option>
+						</select>
+					</div>
+					<div class="grid__item medium--one-quarter large--one-quarter">
+						<!-- <button id="sort-all">View All</button> -->
+					</div>
+					<div class="grid__item medium--one-quarter large--one-quarter">
+						<!-- <button id="sort-images">
+							{% for article in blogs["recipes"].articles %}
+								{% if forloop.first %} 
+									<span class="recipe-amount">{{ forloop.length }}</span>
+								{% endif %}
+							{% endfor %}
+							&nbsp;Images
+						</button> -->
+					</div>
+					<div class="grid__item medium--one-quarter large--one-quarter">
+						<!-- <button id="sort-videos"><span class="recipe-amount">2</span> Videos</button> -->
+					</div>
+				</div>
+				<!-- <div class="grid__item large--two-thirds recipe video" data="360">
+					<div class="video" data-is data-is-source="@310nutrition" data-is-filter-only="#Protein, #WeightLoss, #GetFit, #FitLife, #Workout, #310Shake" data-is-filter-except="#FitnessFriday, https://www.instagram.com/p/BFkQdgNSY7g/, #motivation, #baby, https://www.instagram.com/p/BFZgrl5SY3C/, #free" data-is-height="390" data-is-limit="1" data-is-columns="1" data-is-rows="1" data-is-gutter="0" data-is-arrows-control="false"></div>
+				</div> -->
+				{% for article in blogs["recipes"].articles %}
+
+					<!-- {% if forloop.index0 == 5 %}
+						<div class="grid__item large--two-thirds recipe video" data="233">
+							<div class="video" data-is data-is-source="@310nutrition" data-is-filter-only="#Protein, #WeightLoss, #GetFit, #FitLife, #Workout, #310Shake" data-is-filter-except="#Blueberries #FitnessFriday, https://www.instagram.com/p/BFkQdgNSY7g/, #motivation, #baby, https://www.instagram.com/p/BFZgrl5SY3C/, #free" data-is-height="390" data-is-limit="1" data-is-columns="1" data-is-rows="1" data-is-gutter="0" data-is-arrows-control="false"></div>
+						</div>
+						<div class="grid__item large--one-third  medium--one-half one-whole recipe image" data="{% for tag in article.tags %}{{tag}}{% endfor %}">
+							<div class="border" onclick="showStory('{{article.id}}')">
+								<img src="{{article | img_url: 'large'}}" alt="{{article.title}}" class="recipe-cover-image">
+								<div class="recipe-title text-center">
+									<h3>{{article.title}}</h3>
+									<p>{% for tag in article.tags %}{{tag}} Cal{% endfor %}</p>
+								</div>
+							</div>
+							{% include 'recipe' %}	
+						</div>
+					{% else %} -->
+				
+						<div class="grid__item large--one-third  medium--one-half one-whole recipe image" data="{% for tag in article.tags %}{{tag}}{% endfor %}">
+							<div class="border" onclick="showStory('{{article.id}}')">
+								<img src="{{article | img_url: 'large'}}" alt="{{article.title}}" class="recipe-cover-image">
+								<div class="recipe-title text-center">
+									<h3>{{article.title}}</h3>
+									<p>{% for tag in article.tags %}{{tag}} Cal{% endfor %}</p>
+								</div>
+							</div>
+							{% include 'recipe' %}	
+						</div>
+					<!-- {% endif %} -->
+				
+				{% endfor %}
+				
+				 
+			</div>
+		</div>
+		<script>
+			function showStory(articleId){
+				window.scroll(0,0);
+				var article = '.'+articleId;
+				$(article).addClass('visible');
+				$('.close').click(function(){
+					$(article).removeClass('visible');
+				});
+				$(article).click(function(event){
+					if($(event.target).closest(article + ' .recipe-popout-wrapper').length == 0) {
+				        $(article).removeClass('visible');
+				    }
+				});
+			}
+
+			// var height = $('.image').height();
+			// $('.video').height(height);
+			// $('.video').attr('data-is-height', height);
+			
+			$(document).ready(function(){
+				// $('#sort-images').click(function(){
+				// 	$('.image').show();
+				// 	$('.video').hide();
+				// 	$('.sorting-active').removeClass('sorting-active');
+				// 	$(this).find('.recipe-amount').addClass('sorting-active')
+				// });
+				// $('#sort-videos').click(function(){
+				// 	$('.video').show();
+				// 	$('.image').hide();
+				// 	$('.sorting-active').removeClass('sorting-active');
+				// 	$(this).find('.recipe-amount').addClass('sorting-active')
+				// });
+				// $('#sort-all').click(function(){
+				// 	$('.video').show();
+				// 	$('.image').show();
+				// 	$('.sorting-active').removeClass('sorting-active');
+				// });
+
+				var $wrapper = $('.recipes');
+
+				$('.sort').change(function(){
+					var value = $(this).val();
+					if(value == 'cal-low-hi'){
+						$wrapper.find('.recipe').sort(function (a, b) {
+					    	return +a.getAttribute('data') - +b.getAttribute('data');
+						}).appendTo( $wrapper );
+					}
+					else if(value == 'cal-hi-low'){
+						$wrapper.find('.recipe').sort(function (a, b) {
+					    	return +b.getAttribute('data') - +a.getAttribute('data');
+						}).appendTo( $wrapper );
+					}
+				});
+				
+				// $( window ).resize(function() {
+				// 	var height = $('.image').height();
+				// 	$('.video').height(height);
+				// 	$('.video').attr('data-is-height', height);
+				// });
+			})
+		</script>
+	</div>
+</div>

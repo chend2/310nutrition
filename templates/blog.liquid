@@ -1,0 +1,60 @@
+<!-- /templates/blog.liquid -->
+
+<div class="wrapper blog">
+  <div class="grid">
+    <div class="grid__item text-center">
+      <h1>BLOG</h1>
+      <p>Trending articles about health and fitness.</p>
+    </div>
+{% paginate blog.articles by 10 %}
+    <div class="grid__item large--three-quarters push--large--one-eighth">
+      <div class="grid">
+        <div class="grid__item large--two-thirds articles">
+          <div class="grid">
+            {% for article in blog.articles %}
+            <div class="grid__item article">
+              <div class="grid">
+                <div class="grid__item large--one-third medium--one-half text-center">
+                  <a class="article__featured-image" href="{{ article.url }}">
+                    {{ article | img_url: '1024x1024' | img_tag: article.title }}
+                  </a>
+                </div>
+                <div class="grid__item large--two-thirds medium--one-half">
+                  <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                  {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
+                  {% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>{% endcapture %}
+                  <p>{{ 'blogs.article.author_on_date_html' | t: author: author, date: date }}</p>
+
+                  {% comment %}
+                    Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
+                    Since this is just a listing page, you can either use the excerpt or truncate the full article.
+                  {% endcomment %}
+                  <div class="rte">
+                    {% if article.excerpt.size > 0 %}
+                      {{ article.excerpt }}
+                    {% else %}
+                      <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
+                    {% endif %}
+                    <p><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }} &rarr;</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {% endfor %}
+            {% if paginate.pages > 1 %}
+              <hr>
+              <div class="pagination">
+                {{ paginate | default_pagination }} 
+              </div>
+            {% endif %}
+            {% endpaginate %}
+          </div>
+        </div>
+        <div class="grid__item large--one-third blog-sidebar">
+          {%include 'blog-sidebar' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

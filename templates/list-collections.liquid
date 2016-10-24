@@ -1,0 +1,94 @@
+<!-- /templates/collection.liquid -->
+{% comment %}
+
+  For more information on collection tags:
+    - http://docs.shopify.com/themes/liquid-variables/collection
+    -lets make more changes 
+    
+{% endcomment %}
+
+
+<div class="collection">
+  <div class="hero">
+    <div class="products-heading">
+<img src="{{ '310-thin-banner-image.png' | asset_url}}" alt="310 Thin">
+      <h1><br>$46 VALUE 310THIN<br><span class="free">FREE<br></span><span class="with-any">WITH ANY PURCHASE OF<br></span><span class="dollars-or-more">$99 OR MORE</span></h1>    </div>
+  </div>
+  
+  
+
+  {% paginate collections.Products-WeightLossSupplements.products by 12 %}
+
+  {% include 'breadcrumb' %}
+
+  {% comment %}
+    Use .grid--rev so that the collection tags appear below the products on mobile
+  {% endcomment %}
+
+  
+
+
+  
+  
+
+  <div class="grid--rev weight-loss-shake">
+    <div class="grid__item"><h2>WEIGHT LOSS SHAKE</h2></div>
+    <div class="grid__item">
+      {% for product in collections.Products-WeightLossShake.products %}
+      
+{% include 'bold-product' with product, hide_action: 'skip' %}
+
+      {% assign grid_item_width = 'large--one-third medium--one-half' %}
+      
+        {% include 'product-grid-item-frontpagefeatured' %}
+      
+      {% endfor %}
+    </div> 
+
+  </div>
+
+  <div class="grid--rev weight-loss-supplements">
+    <div class="grid__item"><h2>WEIGHT LOSS SUPPLEMENTS</h2></div>
+    <div class="grid__item">
+      {% for product in collections.Products-WeightLossSupplements.products %}
+      
+      {% include 'bold-product' with product, hide_action: 'skip' %}
+
+      {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
+      
+        {% include 'product-grid-item-weight-loss-supplements' %}
+      
+      {% endfor %}
+    </div> 
+    {% if paginate.pages > 1 %}
+        <hr>
+        <div class="pagination">
+          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        </div>
+      {% endif %}
+
+  </div>
+  
+  
+  
+  
+  {% for collection in collections %}
+    {% if collection.description == "additional category" %}
+      <div class="grid--rev">
+          <div class="grid__item"><h2>{{collection.title}}</h2></div>
+          <div class="grid__item">
+            {% for product in collection.products %}
+            {% include 'bold-product' with product, hide_action: 'skip' %}
+
+            {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
+      
+            {% include 'product-grid-item-weight-loss-supplements' %}
+      
+            {% endfor %}
+          </div> 
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  {% endpaginate %}
+</div>

@@ -1,0 +1,24 @@
+<!-- /templates/page.liquid -->
+{% layout none %}
+{{ 'timber.scss.css' | asset_url | stylesheet_tag }}
+{{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+
+
+<a href='#' style="float: right; padding-right: 10px;" onclick='window.parent.jQuery.colorbox.close(); return false;'>
+  Close this window
+</a>
+
+<div class="grid" style="padding: 25px;">
+	<div class="grid__item large--two-thirds push--large--one-sixth">
+		{% comment %}
+		Regular page content goes here.
+	{% endcomment %}
+	
+	<div class="rte">
+		{{page.content}}
+			<a href='#' onclick='window.parent.jQuery.colorbox.close(); return false;'>
+  Close this window
+</a>
+	</div>
+</div>
+</div>

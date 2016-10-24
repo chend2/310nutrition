@@ -1,0 +1,213 @@
+<!-- /templates/index.liquid -->
+{% comment %}
+
+  This is the homepage of your site.
+
+  More info on global variables (available on all templates):
+    - http://docs.shopify.com/themes/liquid-variables/global
+{% endcomment %}
+<div class="frontpage">
+  <div class="hero">
+    <div class="frontpage-heading">
+      <h1>BUILT FOR HEALTHY WEIGHT LOSS</h1>
+      <a href="/collections/all"><button href="/collections/all">SHOP NOW</button></a>
+    </div>
+  </div>
+  {% comment %}
+    Use class grid-uniform to have evenly sized columns clear
+    each other properly at each breakpoint.
+  {% endcomment %}
+  <div class="wrapper main-content">
+  <div class="grid-uniform">
+    <div class="grid__item intro">
+      <h2 class="large--six-eighths push--large--one-eighth">MEAL REPLACEMENT SHAKES</h2>
+      
+      <p class="large--six-eighths push--large--one-eighth">310 Shake is unlike any other meal replacement shake! We have taken the time to research and develop a unique blend of proprietary proteins called Tri-Plex proteins. These 3 proteins all play specific roles in absorption and fullness.</p>
+    </div>
+  </div>
+  <div class="grid frontpage-collection-products">
+    {% comment %}
+      Loop through products in your Frontpage collection.
+      This collection is created by default, but you must add products to it.
+    {% endcomment %}
+    {% for product in collections.frontpage.products limit:2 %}
+    {% include 'bold-product' with product, hide_action: 'skip' %}
+
+      {% comment %}
+        Change the grid item width by using classes from the grid in
+        the grid_item_width variable.
+
+        Example:
+          - {% assign grid_item_width = 'large--one-third medium--one-half' %}
+      {% endcomment %}
+      {% assign grid_item_width = 'large--one-half medium--one-whole' %}
+      
+        {% include 'product-grid-item-frontpagefeatured' %}
+
+    {% else %}
+      {% comment %}
+        For onboarding new users to your theme, we add some default products and onboarding tutorials to help populate their store
+      {% endcomment %}
+      {% unless emptyState %}
+        {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
+        {% assign emptyState = true %}
+      {% endunless %}
+
+      {% include 'onboarding-featured-products' %}
+
+    {% endfor %}
+
+  </div>
+
+  <hr>
+
+  
+
+  <div class="grid-uniform popular-products">
+    <div class="grid__item"><h2>MORE OF OUR POPULAR PRODUCTS</h2></div>
+    <div class="grid__item">
+      <div class="grid">
+      {% for product in collections.popular.products limit:4 %}
+        {% include 'bold-product' with product, hide_action: 'skip' %}
+
+      {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
+      
+        {% include 'product-grid-item-frontpagepopular' %}
+      
+      {% endfor %}
+      </div>
+    </div> 
+    
+
+  </div>
+
+  <hr>
+
+  <div class="grid-uniform why-310">
+    <a href="/pages/why-310-shake">
+      <div class="grid__item"><h2>WHY 310 SHAKE?</h2></div>
+      <div class="grid__item">
+        <div class="why-310-reasons">
+          <div class="reason-why">
+            <svg xml:space="preserve" enable-background="new 0 0 100 100" viewBox="0 0 100 100" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path d="M1,52.067c0,0,25.368,31.711,31.711,46.933C50.469,50.8,98.669,2.6,98.669,2.6S73.3,20.358,32.71,71.095L1,52.067z"></path></g></svg>
+            <br>TRI-PLEX<br>PROTEINS</div>
+          <div class="reason-why">
+            <svg xml:space="preserve" enable-background="new 0 0 100 100" viewBox="0 0 100 100" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path d="M1,52.067c0,0,25.368,31.711,31.711,46.933C50.469,50.8,98.669,2.6,98.669,2.6S73.3,20.358,32.71,71.095L1,52.067z"></path></g></svg>
+            <br>HIGH<br>FIBER</div>
+          <div class="reason-why">
+            <svg xml:space="preserve" enable-background="new 0 0 100 100" viewBox="0 0 100 100" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path d="M1,52.067c0,0,25.368,31.711,31.711,46.933C50.469,50.8,98.669,2.6,98.669,2.6S73.3,20.358,32.71,71.095L1,52.067z"></path></g></svg>
+            <br>NATURALLY<br>SWEETENED
+          </div>
+        </div>
+        <img src="{{ 'why310image.png' | asset_url }}" alt="">
+        <div class="why-310-reasons">
+          <div class="reason-why">
+            <svg xml:space="preserve" enable-background="new 0 0 100 100" viewBox="0 0 100 100" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path d="M1,52.067c0,0,25.368,31.711,31.711,46.933C50.469,50.8,98.669,2.6,98.669,2.6S73.3,20.358,32.71,71.095L1,52.067z"></path></g></svg>
+            <br>GREAT<br>TASTE
+          </div>
+          <div class="reason-why">
+            <svg xml:space="preserve" enable-background="new 0 0 100 100" viewBox="0 0 100 100" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path d="M1,52.067c0,0,25.368,31.711,31.711,46.933C50.469,50.8,98.669,2.6,98.669,2.6S73.3,20.358,32.71,71.095L1,52.067z"></path></g></svg>
+            <br>SOY PROTEIN<br>FREE</div>
+          <div class="reason-why">
+            <svg xml:space="preserve" enable-background="new 0 0 100 100" viewBox="0 0 100 100" y="0px" x="0px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><path d="M1,52.067c0,0,25.368,31.711,31.711,46.933C50.469,50.8,98.669,2.6,98.669,2.6S73.3,20.358,32.71,71.095L1,52.067z"></path></g></svg>
+            <br>GLUTEN<br>FREE</div>
+        </div>
+      </div>
+      <div class="grid__item nutritions">
+        <div class="nutrition__item"><span class="nutrition-number">15</span>g <br>Tri-Plex&#8482; Proteins</div>
+        <div class="nutrition__item"><span class="nutrition-number">90</span> <br>Cal</div>
+        <div class="nutrition__item"><span class="nutrition-number">5</span>g <br>Fiber</div>
+        <div class="nutrition__item"><span class="nutrition-number">19</span> <br>Vitamins & Minerals</div>
+      </div>
+    </a>
+  </div>
+
+  <hr>
+
+  <div class="grid guarantee-recipes">
+    <div class="grid__item large--one-half guarantee">
+      <img src="{{ 'iron-clad.png' | asset_url }}" alt="Iron Clad">
+      <p><span class="guarantee-title">MONEY BACK</span> GUARANTEE</p>
+      <a href="/pages/guarantees"><button class="learn-more">LEARN MORE</button></a>
+    </div>
+    <div class="grid__item large--one-half guarantee">
+      <img src="{{ 'price-match.png' | asset_url }}" alt="Price Match">
+      <p><span class="guarantee-title">LOW PRICE</span> GUARANTEE</p>
+      <a href="/pages/guarantees"><button class="learn-more">LEARN MORE</button></a>
+    </div>
+    <div class="hollywood-shake">
+      <div class="grid">
+        <div class="grid__item large--one-half medium--two-thirds push--large--one-half push--medium--one-third text-center">
+          <h2>HOLLYWOOD'S HOTTEST SHAKE!</h2>
+          <p>FIND OUT WHO'S DRINKING IT</p>
+          <a href="/pages/social-community"><button><strong>#310</strong>SHAKE</button></a>
+        </div>
+      </div>
+    </div>
+
+    <!--  ADD OVERLAY   -->
+
+    <div class="guarantee-recipes-links">
+      <div class="guarantee-recipes-recipes overlay">
+        <a href="/pages/recipes"><button>GET RECIPES</button></a>
+      </div>
+      <div class="guarantee-recipes-challenge overlay">
+        <a href="/pages/challenge"><button>310 CHALLENGE</button></a>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="grid success-stories">
+    <div class="grid__item success-stories-title">
+      <h2>SUCCESS STORIES: REAL PEOPLE REAL RESULTS</h2>
+      <span class="disclaimer">*Results may vary</span>
+    </div>
+    <div class="grid__item">
+      <p>We have helped countless people reach their fitness goals–but every journey starts with a first step. See how these people started their journeys and reached their goals–and how you can too! <a href="pages/success-stories" class="allstories-link">Read All Stories.</a></p>
+    </div>
+    <div class="grid__item large--one-third one-whole success-story">
+      <div class="weight-loss">LOST 28 <span class="pounds">Lbs*</span></div>
+      <img src="{{ 'angela-yuriko-smith-beforeafter.png' | asset_url }}" alt="">
+      <a href="pages/success-stories">Angela Yuriko Smith's Story ></a>
+    </div>
+    <div class="grid__item large--one-third one-whole success-story">
+      <div class="weight-loss">LOST 60 <span class="pounds">Lbs*</span></div>
+      <img src="{{ 'charity-goodwin-beforeafter.png' | asset_url }}" alt="">
+      <a href="pages/success-stories">Charity Goodwin's Story ></a>
+    </div>
+    <div class="grid__item large--one-third one-whole success-story">
+      <div class="weight-loss">LOST 50 <span class="pounds">Lbs*</span></div>
+      <img src="{{ 'karen-sotelo-beforeafter.png' | asset_url }}" alt="">
+      <a href="pages/success-stories">Karen Sotelo's Story ></a>
+    </div>
+  </div>
+
+  <div class="grid-uniform as-seen">
+    <div class="grid__item">
+      <h2>AS SEEN ON</h2>
+    </div>
+    <div class="as-seen-logos">
+      <img src="{{ 'shape-logo.png' | asset_url }}" alt="Shape">
+      <img src="{{ 'tmz-logo.png' | asset_url }}" alt="TMZ">
+    
+    
+      <img src="{{ 'health-logo.png' | asset_url }}" alt="Health">
+      <img src="{{ 'inquisitr-logo.png' | asset_url }}" alt="Inquisitr">
+    
+    
+      <img src="{{ 'E-logo.png' | asset_url }}" alt="E">
+      <img src="{{ 'realitea-logo.png' | asset_url }}" alt="Realitea">
+    
+    
+      <img src="{{ 'fitness-logo.png' | asset_url }}" alt="fitness">
+      <img src="{{ 'more-logo.png' | asset_url }}" alt="MORE">
+    
+    
+      <img src="{{ 'perezhilton-logo.png' | asset_url }}" alt="PerezHilton.com">
+      <img src="{{ 'ok-logo.png' | asset_url }}" alt="OK!">
+    </div>
+  </div>
+
+  </div>
+</div>

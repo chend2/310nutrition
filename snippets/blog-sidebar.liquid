@@ -1,0 +1,161 @@
+<!-- /snippets/blog-sidebar.liquid -->
+{% comment %}
+  Recent blog posts
+{% endcomment %}
+
+<div class="text-center"><a href="/collections/all"><img class="blog-banner" src="{{ 'blog-banner.png' | asset_url }}"></a></div>
+<div class="blog-sidebar-header">Follow Us</div>
+{% if settings.footer_social_enable %}        
+  <ul class="inline-list social-icons">
+    
+    {% if settings.social_facebook_link != blank %}
+      <li>
+        <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook">
+          <span class="icon icon-facebook" aria-hidden="true"></span>
+          <span class="fallback-text">Facebook</span>
+        </a>
+      </li>
+    {% endif %}
+    {% if settings.social_twitter_link != blank %}
+      <li>
+        <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter">
+          <span class="icon icon-twitter" aria-hidden="true"></span>
+          <span class="fallback-text">Twitter</span>
+        </a>
+      </li>
+    {% endif %}
+    {% if settings.social_twitter_link != blank %}
+      <li>
+        <a class="icon-fallback-text" href="{{ settings.social_youtube_link }}" title="{{ shop.name }} on Youtube">
+          <span class="icon icon-youtube" aria-hidden="true"></span>
+          <span class="fallback-text">Youtube</span>
+        </a>
+      </li>
+    {% endif %}
+    {% if settings.social_googleplus_link != blank %}
+      <li>
+        <a class="icon-fallback-text" href="{{ settings.social_googleplus_link }}" title="{{ shop.name }} on Google Plus">
+          <span class="icon icon-google-plus" aria-hidden="true"></span>
+          <span class="fallback-text">Google Plus</span>
+        </a>
+      </li>
+    {% endif %}
+    {% if settings.social_pinterest_link != blank %}
+      <li>
+        <a class="icon-fallback-text" href="{{ settings.social_pinterest_link }}" title="{{ shop.name }} on Pinterest">
+          <span class="icon icon-pinterest" aria-hidden="true"></span>
+          <span class="fallback-text">Pinterest</span>
+        </a>
+      </li>
+    {% endif %}
+    {% if settings.social_instagram_link != blank %}
+      <li>
+        <a class="icon-fallback-text" href="{{ settings.social_instagram_link }}" title="{{ shop.name }} on Instagram">
+          <span class="icon icon-instagram" aria-hidden="true"></span>
+          <span class="fallback-text">Instagram</span>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+<div class="sidebar-section">
+  <div class="blog-sidebar-header">Subscribe to our blog</div>
+   {% include 'newsletter' %}
+  <form method="post" action="/contact#contact_form" id="contact_form" class="contact-form" accept-charset="UTF-8"><input type="hidden" value="customer" name="form_type">
+    <div class="input-group">
+      
+      <input type="email" value="" placeholder="Enter Your Email Address *" name="contact[email]" id="Email" class="input-group-field" aria-label="email@example.com" autocorrect="off" autocapitalize="off">
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <span class="input-group-btn">
+        <input type="submit" class="btn" name="subscribe" id="submit" value="SUBMIT">
+      </span>
+    </div>
+  </form>
+</div>
+<div class="sidebar-section">
+  <h6 class="text-center">POPULAR</h6>
+  {% assign counter = 0 %}
+  {% for article in blogs['diet-tips'].articles limit: 3 offset:5%}
+   
+          {% assign counter = counter | plus: 1 %}
+          <div class="article-link"><a href="{{shop.url}}{{article.url}}">{{ article | img_url: 'small' | img_tag: article.title }}<p>{{article.title}}</p></a></div>
+    
+  {% endfor %}
+  <a href="{{shop.url}}/blogs/diet-tips">See all >></a>
+</div>
+
+<div class="sidebar-section">
+  <h6 class="text-center">HEALTH NEWS</h6>
+  {% assign counter = 0 %}
+  {% for article in blogs['health-tips'].articles limit:3 offset:9 %}
+      
+          {% assign counter = counter | plus: 1 %}
+          <div class="article-link"><a href="{{shop.url}}{{article.url}}">{{ article | img_url: 'small' | img_tag: article.title }}<p>{{article.title}}</p></a></div>
+      
+  {% endfor %}
+  <a href="{{shop.url}}/blogs/health-tips">See all >></a>
+</div>
+
+<div class="sidebar-section">
+  <h6 class="text-center">PRODUCT NEWS</h6>
+  {% assign counter = 0 %}
+  {% for article in blogs['success-news'].articles limit:3 offset:13 %}
+      
+          {% assign counter = counter | plus: 1 %}
+          <div class="article-link"><a href="{{shop.url}}{{article.url}}">{{ article | img_url: 'small' | img_tag: article.title }}<p>{{article.title}}</p></a></div>
+      
+  {% endfor %}
+  <a href="{{shop.url}}/blogs/success-news">See all >></a>
+</div>
+
+<div class="sidebar-section">
+  <h6 class="text-center">TIPS & TRICKS</h6>
+  {% assign counter = 0 %}
+  {% for article in blogs['fitness'].articles limit:3 offset:17 %}
+      
+          {% assign counter = counter | plus: 1 %}
+          <div class="article-link"><a href="{{shop.url}}{{article.url}}">{{ article | img_url: 'small' | img_tag: article.title }}<p>{{article.title}}</p></a></div>
+        
+  {% endfor %}
+  <a href="{{shop.url}}/blogs/fitness">See all >></a>
+</div>
+
+<div class="sidebar-section">
+  <h6 class="text-center">ALL ARTICLES</h6>
+  {% assign counter = 0 %}
+  {% for article in blogs['weight-loss'].articles limit:3 offset:21 %}
+      
+          {% assign counter = counter | plus: 1 %}
+          <div class="article-link"><a href="{{shop.url}}{{article.url}}">{{ article | img_url: 'small' | img_tag: article.title }}<p>{{article.title}}</p></a></div>
+      
+  {% endfor %}
+  <a href="{{shop.url}}/pages/blog">See all >></a>
+</div>
+
+<!-- <h4 class="text-right">ARCHIVED BY DATE</h4>
+<ul class="no-bullets text-right">
+  {% for article in blogs.post.articles limit:6 %}
+    <li>
+      <a href="{{ article.url }}"><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time></a>
+      <br>
+      
+    </li>
+  {% endfor %}
+</ul> -->
+
+{% comment %}
+  Blog tags
+{% endcomment %}
+<!-- {% if blogs.post.all_tags.size > 0 %}
+  <h4 class="text-right">{{ 'blogs.sidebar.categories' | t }}</h4>
+  <ul class="no-bullets text-right">
+    {% for tag in blogs.post.all_tags %}
+      {% if current_tags contains tag %}
+      <li>{{ tag }}</li>
+      {% else %}
+      <li>{{ tag | link_to_tag: tag }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %} -->
