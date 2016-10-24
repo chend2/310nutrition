@@ -6,3 +6,4 @@ development:
   bucket_size: 40
   refill_rate: 2
   timeout: 30s
+
