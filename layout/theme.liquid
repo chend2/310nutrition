@@ -56,7 +56,8 @@
   {% if product.metafields.inventory.ShappifyHidden == "true" %} <meta name="robots" content="noindex"> {% endif %}
 
 {% include 'sca-quick-view-init' %}
-<script type="text/javascript"> !function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version="3.0";var t=document.createElement("script");t.async=!0,t.src=e;var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");  pintrk('load','2613383706429'); pintrk('page', { page_name: {{page_title}}, page_category: {{current_tags}} }); </script> <noscript> <img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/v3/?tid=2613383706429&noscript=1" /> </noscript>
+	<!-- pinterest tag -->
+  <script type="text/javascript"> !function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version="3.0";var t=document.createElement("script");t.async=!0,t.src=e;var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");  pintrk('load','2613383706429'); pintrk('page', { page_name: 'My Page', page_category: 'My Page Category' }); </script> <noscript> <img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/v3/?tid=2613383706429&noscript=1" /> </noscript>
 
  </head>
 
@@ -396,7 +397,7 @@
                       </a>
                     </li>
                   {% endif %}
-                  {% if settings.social_twitter_link != blank %}
+                  {% if settings.social_youtube_link != blank %}
                     <li>
                       <a class="icon-fallback-text" href="{{ settings.social_youtube_link }}" title="{{ shop.name }} on Youtube">
                         <span class="icon icon-youtube" aria-hidden="true"></span>

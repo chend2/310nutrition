@@ -1,4 +1,4 @@
-<!-- /snippets/product-grid-item-frontpagepopular.liquid -->
+<!-- /snippets/product-grid-item-bundle.liquid -->
 {% comment %}
 
   This snippet is used to showcase each product during the loop,
@@ -61,12 +61,12 @@
     <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
   </p>
   
-    {% for tag in product.tags %}
+    {% for tag in product.tags limit:1 %}
         <p class="product-quick-description">{{ tag }}</p>
     {% endfor %}
   
-  <p class="price">{{ product.price | money }}</p>
-   
+  
+   <p class="price">{{ product.price | money }}</p>
   
   <p>
     {% comment %}
@@ -84,7 +84,8 @@
     {% endif %}
   </p>
 
-{% comment %} // shutting down the add to cart on the homepage
+
+{% comment %}
 <form id="product-{{ product.id }}" action="/cart/add" method="post">
      <input type="hidden" name="id" value="{{ product.variants.first.id }}" id="variant-{{ variant.id }}" />
 
