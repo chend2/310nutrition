@@ -21,44 +21,12 @@
 							<option value="cal-hi-low">Calories High to Low</option>
 						</select>
 					</div>
-					<div class="grid__item medium--one-quarter large--one-quarter">
-						<!-- <button id="sort-all">View All</button> -->
-					</div>
-					<div class="grid__item medium--one-quarter large--one-quarter">
-						<!-- <button id="sort-images">
-							{% for article in blogs["recipes"].articles %}
-								{% if forloop.first %} 
-									<span class="recipe-amount">{{ forloop.length }}</span>
-								{% endif %}
-							{% endfor %}
-							&nbsp;Images
-						</button> -->
-					</div>
-					<div class="grid__item medium--one-quarter large--one-quarter">
-						<!-- <button id="sort-videos"><span class="recipe-amount">2</span> Videos</button> -->
-					</div>
-				</div>
-				<!-- <div class="grid__item large--two-thirds recipe video" data="360">
-					<div class="video" data-is data-is-source="@310nutrition" data-is-filter-only="#Protein, #WeightLoss, #GetFit, #FitLife, #Workout, #310Shake" data-is-filter-except="#FitnessFriday, https://www.instagram.com/p/BFkQdgNSY7g/, #motivation, #baby, https://www.instagram.com/p/BFZgrl5SY3C/, #free" data-is-height="390" data-is-limit="1" data-is-columns="1" data-is-rows="1" data-is-gutter="0" data-is-arrows-control="false"></div>
-				</div> -->
-				{% for article in blogs["recipes"].articles %}
-
-					<!-- {% if forloop.index0 == 5 %}
-						<div class="grid__item large--two-thirds recipe video" data="233">
-							<div class="video" data-is data-is-source="@310nutrition" data-is-filter-only="#Protein, #WeightLoss, #GetFit, #FitLife, #Workout, #310Shake" data-is-filter-except="#Blueberries #FitnessFriday, https://www.instagram.com/p/BFkQdgNSY7g/, #motivation, #baby, https://www.instagram.com/p/BFZgrl5SY3C/, #free" data-is-height="390" data-is-limit="1" data-is-columns="1" data-is-rows="1" data-is-gutter="0" data-is-arrows-control="false"></div>
-						</div>
-						<div class="grid__item large--one-third  medium--one-half one-whole recipe image" data="{% for tag in article.tags %}{{tag}}{% endfor %}">
-							<div class="border" onclick="showStory('{{article.id}}')">
-								<img src="{{article | img_url: 'large'}}" alt="{{article.title}}" class="recipe-cover-image">
-								<div class="recipe-title text-center">
-									<h3>{{article.title}}</h3>
-									<p>{% for tag in article.tags %}{{tag}} Cal{% endfor %}</p>
-								</div>
-							</div>
-							{% include 'recipe' %}	
-						</div>
-					{% else %} -->
 				
+				</div>
+			
+              
+				{% for article in blogs["recipes"].articles %}
+			
 						<div class="grid__item large--one-third  medium--one-half one-whole recipe image" data="{% for tag in article.tags %}{{tag}}{% endfor %}">
 							<div class="border" onclick="showStory('{{article.id}}')">
 								<img src="{{article | img_url: 'large'}}" alt="{{article.title}}" class="recipe-cover-image">
@@ -69,7 +37,6 @@
 							</div>
 							{% include 'recipe' %}	
 						</div>
-					<!-- {% endif %} -->
 				
 				{% endfor %}
 				
