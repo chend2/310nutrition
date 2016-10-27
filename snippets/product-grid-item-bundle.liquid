@@ -66,8 +66,17 @@
     {% endfor %}
   
   
-   <p class="price">{{ product.price | money }}</p>
+   <p class="price">
+     
+      {% if on_sale %}
+      <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+      <s style="font-size:50%">{{ product.compare_at_price | money }}</s>
+    {% endif %}
+     
+     {{ product.price | money }}
+
   
+  </p>
   <p>
     {% comment %}
       You can show a leading 'from' or 'up to' by checking 'product.price_varies'
@@ -78,10 +87,7 @@
       <br><strong>{{ 'products.product.sold_out' | t }}</strong>
     {% endif %}
     {% endcomment %}
-    {% if on_sale %}
-      <span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
-      <br><s>{{ product.compare_at_price | money }}</s>
-    {% endif %}
+  
   </p>
 
 
