@@ -1,163 +1,115 @@
 <!-- /templates/collection.list.liquid -->
 {% comment %}
 
-  By using a variation of the 'view all' parameter technique, you can create
-  a custom layout for any template by adding ?view=xxxx
-
-  In this example, you can have a list view of your collection page by going to
-  /collections/all?view=list
-
   For more information on collection tags:
     - http://docs.shopify.com/themes/liquid-variables/collection
-
-  For more information on the ?view parameter:
-    - http://docs.shopify.com/support/configuration/store-customization/can-i-show-more-than-50-products-on-my-homepage-can-i-add-a-view-all-function-to-my-collection-pages#add-view-all
-
+    -lets make more changes 
+    
 {% endcomment %}
 
-{% paginate collection.products by 12 %}
 
-{% include 'breadcrumb' %}
+<div class="collection">
+  <div class="hero">
+    <div class="products-heading">
+<img src="{{ '310-thin-banner-image.png' | asset_url}}" alt="310 Thin">
+      <h1><br>$46 VALUE 310THIN<br><span class="free">FREE<br></span><span class="with-any">WITH ANY PURCHASE OF<br></span><span class="dollars-or-more">$99 OR MORE</span></h1>    </div>
+  </div>
+  
+  
 
-{% comment %}
-  Use .grid--rev so that the collection tags appear below the products on mobile
-{% endcomment %}
-<div class="grid--rev">
-  <div class="grid__item large--three-quarters">
+  {% paginate collections.Products-WeightLossSupplements.products by 12 %}
 
-    {% comment %}
-      Different markup if a collection description exists
-    {% endcomment %}
-    {% if collection.description != blank %}
-      <header class="section-header">
-        <h1 class="section-header__title">{{ collection.title }}</h1>
-        <div class="rte rte--header">
-          {{ collection.description }}
-        </div>
-      </header>
-      <hr>
-      <div class="section-header">
-        <div class="section-header__right">
-          {% include 'collection-sorting' %}
-        </div>
-      </div>
-    {% else %}
-      <header class="section-header">
-        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
-        <div class="section-header__right">
-          {% include 'collection-sorting' %}
-        </div>
-      </header>
-    {% endif %}
+  {% include 'breadcrumb' %}
 
-    {% comment %}
-      Use class grid-uniform to have evenly sized columns clear
-      each other properly at each breakpoint.
-    {% endcomment %}
-    <div class="grid-uniform">
+  {% comment %}
+    Use .grid--rev so that the collection tags appear below the products on mobile
+  {% endcomment %}
 
-      <!-- begin product list output -->
-      {% for product in collection.products %}
+  
 
-        {% comment %}
-          Check if the product is on sale and set a variable to be used below.
-        {% endcomment %}
-        {% assign on_sale = false %}
-        {% if product.compare_at_price > product.price %}
-          {% assign on_sale = true %}
-        {% endif %}
 
-        {% comment %}
-          Check if the product is sold out and set a variable to be used below.
-        {% endcomment %}
-        {% assign sold_out = true %}
-        {% if product.available %}
-          {% assign sold_out = false %}
-        {% endif %}
+  
+  
 
-        <div class="grid__item">
+  <div class="grid--rev weight-loss-shake">
+    <div class="grid__item"><h2>WEIGHT LOSS SHAKE</h2></div>
+    <div class="grid__item">
+      {% for product in collections.Products-WeightLossShake.products %}
+      
+{% include 'bold-product' with product, hide_action: 'skip' %}
 
-          {% comment %}
-            Link to your product with the 'within: collection' filter for the link to be aware of the collection.
-            This allows you to create collection-based navigation on the product page.
+      {% assign grid_item_width = 'large--one-third medium--one-half' %}
+      
+        {% include 'product-grid-item-frontpagefeatured' %}
+      
+      {% endfor %}
+    </div> 
 
-            Results of using 'within: collection':
-            - Instead of a URL with /products/product-handle
-              you would get /collections/collection-handle/products/product-handle
+  </div>
+  
+  <div class="grid--rev bundle">
+    <div class="grid__item"><h2>BUY MORE SAVE MORE-BUNDLES</h2></div>
+    <div class="grid__item">
+      {% for product in collections.Product-Bundle.products %}
 
-            For more info on navigation within a collection
-              - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
-          {% endcomment %}
-          <div class="grid large--display-table">
-            <div class="grid__item large--one-fifth large--display-table-cell medium--one-third">
-              <a href="{{ product.url | within: collection }}">
-                <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" class="grid__image 2">
-              </a>
-            </div>
-            <div class="grid__item large--four-fifths large--display-table-cell medium--two-thirds">
-              <div class="grid">
-                <div class="grid__item large--three-quarters medium--two-thirds">
-                  <p class="h6">{{ product.title }}</p>
-                  <div class="rte">
-                    <p>{{ product.content | strip_html | truncatewords: 30 }}</p>
-                  </div>
-                </div>
-                <div class="grid__item large--one-quarter medium--one-third">
-                  {% comment %}
-                    You can show a leading 'from' or 'up to' by checking 'product.price_varies'
-                    if your variants have different prices.
-                  {% endcomment %}
-                  {% if on_sale %}
-                    {% if product.price_varies %}
-                      {% assign sale_price = product.price | money %}
-                      {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-                    {% else %}
-                      <strong>{{ 'products.product.on_sale' | t }}</strong>
-                      {{ product.price | money }}
-                    {% endif %}
-                  {% else %}
-                    {% if product.price_varies %}
-                      {% assign price = product.price | money %}
-                      {{ 'products.general.from_text_html' | t: price: price }}
-                    {% else %}
-                      {{ product.price | money }}
-                    {% endif %}
-                  {% endif %}
-                  {% if sold_out %}
-                    <br><strong>{{ 'products.product.sold_out' | t }}</strong>
-                  {% endif %}
-                  {% if on_sale %}
-                    <br><span class="visually-hidden">{{ 'products.general.regular_price' | t }}</span><s>{{ product.compare_at_price | money }}</s>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {% include 'bold-product' with product, hide_action: 'skip' %}
 
-      {% else %}
+      {% assign grid_item_width = 'large--one-third medium--one-half' %}
 
-        <div class="grid__item">
-          <p>{{ 'collections.general.no_matches' | t }}</p>
-        </div>
+        {% include 'product-grid-item-bundle' %}
 
       {% endfor %}
-      <!-- //product list output -->
-
     </div>
-
     {% if paginate.pages > 1 %}
       <hr>
       <div class="pagination">
-        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;'}} 
+        </div>
+      {% endif %}
+  </div>  
+  
+  
+  <div class="grid--rev weight-loss-supplements">
+    <div class="grid__item"><h2>WEIGHT LOSS SUPPLEMENTS</h2></div>
+    <div class="grid__item">
+      {% for product in collections.Products-WeightLossSupplements.products %}
+      
+      {% include 'bold-product' with product, hide_action: 'skip' %}
+
+      {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
+      
+        {% include 'product-grid-item-weight-loss-supplements' %}
+      
+      {% endfor %}
+    </div> 
+    {% if paginate.pages > 1 %}
+        <hr>
+        <div class="pagination">
+          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        </div>
+      {% endif %}
+
+  </div>
+  
+  
+
+  {% for collection in collections %}
+    {% if collection.description == "additional category" %}
+      <div class="grid--rev">
+          <div class="grid__item"><h2>{{collection.title}}</h2></div>
+          <div class="grid__item">
+            {% for product in collection.products %}
+            {% include 'bold-product' with product, hide_action: 'skip' %}
+
+            {% assign grid_item_width = 'large--one-quarter medium--one-half' %}
+      
+            {% include 'product-grid-item-weight-loss-supplements' %}
+      
+            {% endfor %}
+          </div> 
       </div>
     {% endif %}
+  {% endfor %}
 
-  </div>
-
-  <div class="grid__item large--one-quarter">
-    {% include 'collection-sidebar' %}
-  </div>
+  {% endpaginate %}
 </div>
-
-{% endpaginate %}
