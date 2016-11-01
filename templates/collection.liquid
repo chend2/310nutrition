@@ -46,7 +46,28 @@
     </div> 
 
   </div>
+  
+  <div class="grid--rev bundle">
+    <div class="grid__item"><h2>BUY MORE SAVE MORE-BUNDLES</h2></div>
+    <div class="grid__item">
+      {% for product in collections.Product-Bundle.products %}
 
+      {% include 'bold-product' with product, hide_action: 'skip' %}
+
+      {% assign grid_item_width = 'large--one-third medium--one-half' %}
+
+        {% include 'product-grid-item-bundle' %}
+
+      {% endfor %}
+    </div>
+    {% if paginate.pages > 1 %}
+      <hr>
+      <div class="pagination">
+        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;'}} 
+        </div>
+      {% endif %}
+  </div>  
+  
   <div class="grid--rev weight-loss-supplements">
     <div class="grid__item"><h2>WEIGHT LOSS SUPPLEMENTS</h2></div>
     <div class="grid__item">
@@ -70,27 +91,7 @@
   </div>
   
   
-  <div class="grid--rev bundle">
-    <div class="grid__item"><h2>BUY MORE SAVE MORE-BUNDLES</h2></div>
-    <div class="grid__item">
-      {% for product in collections.Product-Bundle.products %}
 
-      {% include 'bold-product' with product, hide_action: 'skip' %}
-
-      {% assign grid_item_width = 'large--one-third medium--one-half' %}
-
-        {% include 'product-grid-item-bundle' %}
-
-      {% endfor %}
-    </div>
-    {% if paginate.pages > 1 %}
-      <hr>
-      <div class="pagination">
-        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;'}} 
-        </div>
-      {% endif %}
-  </div>  
-  
   
   {% for collection in collections %}
     {% if collection.description == "additional category" %}
