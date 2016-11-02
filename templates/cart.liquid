@@ -95,11 +95,12 @@
                 <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" min="0" {{ bold_qty_attr }}/>
                  
                <input type="submit" name="update" class="btn--secondary update-cart" value="UPDATE CART">
-            	{% endunless %} 
-              
-                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove">
+            	  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove">
                 REMOVE ITEM
               </a>
+              {% endunless %} 
+              
+              
              
             </td>
             

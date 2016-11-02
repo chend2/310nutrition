@@ -23,6 +23,11 @@
 		"social_googleplus_link": "https:\/\/plus.google.com\/u\/4\/b\/114095535761834620004\/114095535761834620004\/about",
 		"social_pinterest_link": "https:\/\/www.pinterest.com\/310nutrition\/",
 		"social_instagram_link": "https:\/\/instagram.com\/310nutrition",
+		"limit": "Enabled for products listed",
+		"limit_quantity": "2",
+		"limit_per": "order",
+		"limit_product_handles": "310-thin-1",
+		"limit_skip_cart_page": false,
 		"checkout_use_header_image": false,
 		"checkout_header_image": "",
 		"checkout_logo": "",
@@ -40,7 +45,8 @@
 		"checkout_body_font": "Helvetica Neue",
 		"checkout_accent_color": "#adadad",
 		"checkout_button_color": "#fc6719",
-		"checkout_error_color": "#ff6d6d"
+		"checkout_error_color": "#ff6d6d",
+		"content_for_index": []
 	},
 	"presets": {
 		"Default": {
